@@ -107,23 +107,24 @@ class Dude:
 
     def move(self): 
         """ Move the Dude. """
-        if self.alive:
-            r, g, b, a = self.surface.get_at((self.x, self.y))
-            if (r, g, b) == self.worm_colour:
-                self.alive = False
-            else:
-                self.surface.set_at((self.x, self.y), self.sand_colour)
-                w, h = self.surface.get_size()
-                x_dir = random.randint(-1, 1)
-                y_dir = random.randint(-1, 1)
-                new_x = (self.x + x_dir) % w
-                new_y = (self.y + y_dir) % h
-                r, g, b, a = self.surface.get_at((new_x, new_y))
-                if (r,g,b) != self.worm_colour and (r,g,b) != self.dude_colour:
-                    self.x = new_x
-                    self.y = new_y
-                if (r, g, b) == self.spice_colour:
-                    Dude.collected += 1
+        if not self.alive:
+             return
+        r, g, b, a = self.surface.get_at((self.x, self.y))
+        if (r, g, b) == self.worm_colour:
+            self.alive = False
+            return
+        self.surface.set_at((self.x, self.y), self.sand_colour)
+        w, h = self.surface.get_size()
+        x_dir = random.randint(-1, 1)
+        y_dir = random.randint(-1, 1)
+        new_x = (self.x + x_dir) % w
+        new_y = (self.y + y_dir) % h
+        r, g, b, a = self.surface.get_at((new_x, new_y))
+        if (r,g,b) != self.worm_colour and (r,g,b) != self.dude_colour:
+            self.x = new_x
+            self.y = new_y
+        if (r, g, b) == self.spice_colour:
+            Dude.collected += 1
         
     def draw(self):
         """ Draws the Dude if alive. """
