@@ -28,8 +28,8 @@ class Worm:
         pygame.K_z:     (-1, 1)
     }
 
-    def __init__(self, surface, x, y, length, worm_colour=(126,84,0), \
-                 sand_colour=(210,168,0), dude_colour=(0,0,0), \
+    def __init__(self, surface, x, y, length, worm_colour=(126,84,0),
+                 sand_colour=(210,168,0), dude_colour=(0,0,0),
                  spice_colour=(168,126,0)):
         self.surface = surface
         self.x, self.y = x, y
@@ -85,8 +85,9 @@ class Dude:
     
     collected = 0    
 
-    def __init__(self, surface, x=-1, y=-1, dude_colour=(0, 0, 0), worm_colour=(126, 84, 0), \
-                 spice_colour=(168, 126, 0), sand_colour=(210, 168, 0)):    
+    def __init__(self, surface, x=-1, y=-1, dude_colour=(0, 0, 0),
+                 worm_colour=(126, 84, 0), spice_colour=(168, 126, 0),
+                 sand_colour=(210, 168, 0)):    
         self.dude_colour = dude_colour
         self.worm_colour = worm_colour
         self.spice_colour = spice_colour
@@ -134,7 +135,8 @@ class Dude:
 class Spice:
     """ The Worm is the Spice! Spice blooms. """
 
-    def __init__(self, surface, spice_colour=(168, 126, 0), sand_colour=(210, 168, 0)):
+    def __init__(self, surface, spice_colour=(168, 126, 0),
+                 sand_colour=(210, 168, 0)):
         self.spice_colour = spice_colour
         self.sand_colour = sand_colour
         self.surface = surface
@@ -191,7 +193,7 @@ spice_colour = (210, 126, 0)
 rock_colour = (84, 42, 0)
 
 # Make Worm:
-w = Worm(screen, width/2, height/2, 64, worm_colour, sand_colour, \
+w = Worm(screen, width/2, height/2, 64, worm_colour, sand_colour,
          dude_colour, spice_colour)
 
 # Make spice:
@@ -208,7 +210,7 @@ for n in range(n_spice):
 n_dudes = 512
 dudes = []
 for n in range(n_dudes):
-    dudes.insert(0, Dude(screen, -1, -1, dude_colour, worm_colour, \
+    dudes.insert(0, Dude(screen, -1, -1, dude_colour, worm_colour,
                          spice_colour, sand_colour))
 
 while running:
@@ -235,5 +237,5 @@ while running:
     pygame.display.flip()
     clock.tick(100)
 
-print "Spice eaten: {0} \nDudes eaten: {1} \nSpice stolen: {2}".format( \
+print "Spice eaten: {0} \nDudes eaten: {1} \nSpice stolen: {2}".format(
       w.spice_eaten, w.dudes_eaten, Dude.collected)
